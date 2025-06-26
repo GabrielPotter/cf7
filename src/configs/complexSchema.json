@@ -1,0 +1,51 @@
+{
+    "title": "Application Settings",
+    "type": "object",
+    "properties": {
+        "window": {
+            "type": "object",
+            "title": "Window Settings",
+            "properties": {
+                "title": { "type": "string", "title": "Window Title" },
+                "width": { "type": "number", "title": "Width" },
+                "height": { "type": "number", "title": "Height" },
+                "resizable": { "type": "boolean", "title": "Resizable" },
+                "path": { "type": "string", "title": "Output Folder", "format": "folder" },
+                "logFile": { "type": "string", "title": "Log File", "format": "file" }
+            }
+        },
+        "database": {
+            "type": "object",
+            "title": "Database Configuration",
+            "properties": {
+                "host": { "type": "string", "title": "Host" },
+                "port": { "type": "number", "title": "Port" },
+                "secret": { "type": "string", "title": "Secret Key" },
+                "credentials": {
+                    "type": "object",
+                    "title": "Credentials",
+                    "properties": {
+                        "username": { "type": "string", "title": "Username" },
+                        "password": { "type": "string", "title": "Password" },
+                        "security": {
+                            "type": "object",
+                            "title": "Security Settings",
+                            "properties": {
+                                "useSSL": { "type": "boolean", "title": "Use SSL" },
+                                "certificatePath": {
+                                    "type": "string",
+                                    "title": "Certificate Path"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "theme": {
+            "type": "string",
+            "title": "Theme",
+            "enum": ["light", "dark", "system"]
+        }
+    }
+}

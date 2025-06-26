@@ -1,0 +1,24 @@
+# node
+node_modules/
+dist/
+out/
+release/
+
+# logs
+*.log
+
+# system
+.DS_Store
+*.swp
+*.swo
+
+# Vite
+.vite/
+.cache/
+
+# vscode
+.vscode/
+
+# yarn
+.yarn/
+.pnp.*

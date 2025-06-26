@@ -1,0 +1,40 @@
+{
+    "title": "General settings",
+    "type": "object",
+    "properties": {
+        "graphqlPath": {
+            "type": "string",
+            "title": "Path to gaphql sources",
+            "format": "folder"
+        },
+        "filters": {
+            "type": "array",
+            "title": "Filters",
+            "items": { "type": "string" }
+        },
+        "database": {
+            "type": "array",
+            "title": "Database access",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { "type": "string", "title": "Database name" },
+                    "acesskey": { "type": "string", "title": "Access key" },
+                    "datakeys": { "type": "array", "title": "Data keys", "items": { "type": "string" } },
+                    "filters": {
+                        "type": "array",
+                        "title": "Data query filters",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "qname": { "type": "string", "title": "qery name" },
+                                "qindex": { "type": "number", "title": "query number" },
+                                "qinfo": { "type": "boolean", "title": "show info" }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
