@@ -64,16 +64,15 @@ export const App: React.FC = () => {
 
             <Box display="flex" flexDirection="column" height="100vh" width="100vw" overflow="hidden">
                 <Paper square>
-                    <Tabs value={tab} onChange={(_, v) => setTab(v)} variant="scrollable">
+                    <Tabs value={tab} onChange={(_, v) => setTab(v)}>
                         <Tab label="main.ts" />
                         <Tab label="Settings" />
                     </Tabs>
                 </Paper>
 
-                {/* FIX HERE */}
                 <Box flex={1} display="flex" flexDirection="column" minHeight={0} minWidth={0} overflow="hidden">
-                    {/* THIS BOX is the key: flex + height: 0 */}
-                    <Box flex={1} display="flex" height={0} width="100%">
+                    {/* HU: Ez a belső flex box, ami utánad ne maradjon ki */}
+                    <Box flex="1 0 0" display="flex" width="100%" height="0">
                         {tab === 0 ? <MainEditor /> : <SettingsView />}
                     </Box>
                 </Box>

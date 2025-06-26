@@ -3,21 +3,26 @@
     <head>
         <meta charset="UTF-8" />
         <title>cf7</title>
-         <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden; /* ⛔ Tiltsa a teljes scrollozást */
-        height: 100%;
-        width: 100%;
-      }
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden; /* ⛔ Tiltsa a teljes scrollozást */
+                height: 100%;
+                width: 100%;
+            }
 
-      #root {
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-      }
-    </style>
+            #root {
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
+            }
+            .cm-scroller {
+                overflow: scroll !important;
+                white-space: pre !important;
+            }
+        </style>
     </head>
     <body>
         <div id="root"></div>

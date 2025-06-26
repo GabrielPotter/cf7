@@ -3,16 +3,17 @@ import CodeMirror from "@uiw/react-codemirror";
 import { erlangHighlight, erlangLanguage } from "../languages/erlang-mode";
 import { useState } from "react";
 
-const fullFlexTheme = EditorView.theme({
+const cmTheme = EditorView.theme({
   "&": { height: "100%", width: "100%" },
   ".cm-editor": { display: "flex", flexDirection: "column", flex: 1 },
   ".cm-scroller": {
     flex: 1,
-    overflow: "auto",    // both vertical and horizontal scrollbars
-    whiteSpace: "pre",   // long lines don't wrap
+    overflow: "auto",
+    whiteSpace: "pre",       // vízszintes scroll
     boxSizing: "border-box",
   },
 });
+
 
 export const MainEditor: React.FC = () => {
   const [code, setCode] = useState("stringWithManyLinesAndLongLines"); // test content
@@ -21,7 +22,7 @@ export const MainEditor: React.FC = () => {
     <CodeMirror
       value={code}
       height="100%"
-      extensions={[fullFlexTheme, erlangLanguage, erlangHighlight]}
+      extensions={[cmTheme, erlangLanguage, erlangHighlight]}
       onChange={(v) => setCode(v)}
     />
   );
