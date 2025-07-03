@@ -1,0 +1,32 @@
+@top Module { moduleDecl exportDecl* function* }
+
+moduleDecl { Minus KeywordModule LParen Atom RParen Period }
+exportDecl { Minus KeywordExport LParen LBracket exportSpec (Comma exportSpec)* RBracket RParen Period }
+function { Atom LParen ArgList? RParen Arrow Expr Period }
+
+exportSpec { Atom Slash Number }
+ArgList { Expr (Comma Expr)* }
+Expr { Atom | Number | String | Expr Colon Atom LParen ArgList? RParen }
+
+@tokens {
+  Atom {$[a-z] $[A-Za-z0-9_]*}
+  Number { $[0-9]+ }
+  String { "\"" (!["\\] | "\\" _)* "\"" }
+  Arrow { "->" }
+  Period { "." }
+  LParen { "(" }
+  RParen { ")" }
+  Comma { "," }
+  LBracket { "[" }
+  RBracket { "]" }
+  Minus { "-" }
+  Slash { "/" }
+  Colon { ":" }
+
+  KeywordModule { "module" }
+  KeywordExport { "export" }
+
+  space { $[ \t\n\r]+ }
+}
+
+@skip { space }

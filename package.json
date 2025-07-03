@@ -12,8 +12,9 @@
         "dev": "vite",
         "build:main": "tsc",
         "build:renderer": "vite build",
+        "build:erlang": "lezer-generator --typeScript --export parser src/renderer/languages/erlang.grammar -o src/renderer/languages/erlangParser.ts",
         "copy-configs": "mkdir -p dist/configs && cp -r src/configs/* dist/configs/",
-        "build": "npm run build:main && npm run build:renderer && npm run copy-configs",
+        "build": "npm run build:erlang && npm run build:main && npm run build:renderer && npm run copy-configs",
         "start": "electron --no-sandbox .",
         "package": "npm run build && electron-builder"
     },
@@ -38,6 +39,7 @@
         }
     },
     "dependencies": {
+        "@codemirror/lang-javascript": "^6.2.4",
         "@codemirror/language": "^6.11.1",
         "@emotion/cache": "^11.14.0",
         "@emotion/react": "^11.14.0",
@@ -53,9 +55,12 @@
         "codemirror": "^6.0.2",
         "dayjs": "^1.11.10",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-resizable-panels": "^3.0.3",
+        "reactflow": "^11.11.4"
     },
     "devDependencies": {
+        "@lezer/generator": "^1.8.0",
         "@vitejs/plugin-react": "^4.2.1",
         "electron": "^26.2.0",
         "electron-builder": "^26.0.12",

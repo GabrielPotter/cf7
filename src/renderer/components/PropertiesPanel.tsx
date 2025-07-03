@@ -29,9 +29,10 @@ export const PropertiesPanel: React.FC = () => {
     if (!loaded || !schema) return <div>Loading...</div>;
 
     return (
-        <div style={{ padding: 20 }}>
+        <>
+       
             <PropertyGrid schema={schema} data={formData} onChange={setFormData} />
             <button onClick={handleSave}>💾 Save</button>
-        </div>
+      </>
     );
 };
