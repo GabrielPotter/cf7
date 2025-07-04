@@ -9,16 +9,9 @@ const ErlangEditor: React.FC = () => {
 world() ->
   io:format("Hello, Erlang!~n").`);
 
-    //return <CodeMirror value={code} style={{margin:"5px"}} extensions={[javascript()]} onChange={(val) => setCode(val)} />;
-
     return (
         <div className="parent">
-            <CodeMirror
-                height="95vh"
-                value={code}
-                extensions={[erlang()]}
-                onChange={(val) => setCode(val)}
-            />
+            <CodeMirror height="95vh" value={code} extensions={[erlang()]} onChange={(val) => setCode(val)} />
         </div>
     );
 };

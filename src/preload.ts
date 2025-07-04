@@ -1,8 +1,10 @@
 import { contextBridge, ipcRenderer } from "electron";
+import { winName } from "./common";
 
-contextBridge.exposeInMainWorld("electronAPI", {
-    ping: () => ipcRenderer.invoke("ping"),
-});
+contextBridge.exposeInMainWorld("windowAPI",{
+    openConfig: (name:winName) => ipcRenderer.send("create-child",name),
+})
+
 contextBridge.exposeInMainWorld("configAPI", {
     get: (key: string) => ipcRenderer.invoke("config:get", key),
     set: (key: string, value: any) => ipcRenderer.invoke("config:set", key, value),
@@ -19,3 +21,12 @@ contextBridge.exposeInMainWorld("jsonAPI", {
     saveJson: (baseDir: string, baseName: string, content: any) =>
         ipcRenderer.invoke("json:save", baseDir, baseName, content),
 });
+
+contextBridge.exposeInMainWorld("workerAPI",{
+    onWorkerMessage:(callback: (event:string,payload:any) => void) =>{
+        ipcRenderer.on('worker-response', (_e,data) =>{
+            console.log("preload",data);
+            callback(data.event, data.payload);
+        })
+    }
+})

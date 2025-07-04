@@ -2,50 +2,30 @@ import { app, BrowserWindow, dialog, ipcMain, Menu, MenuItemConstructorOptions }
 import { readFile, writeFile } from "fs/promises";
 import path, { join, resolve } from "path";
 import { pathToFileURL } from "url";
-
-function createWindow() {
-    const win = new BrowserWindow({
-        width: 1024,
-        height: 768,
-        x: 200 + Math.floor(Math.random() * 100),
-        y: 200 + Math.floor(Math.random() * 100),
-        show: false,
-        webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
-        },
-    });
-    const menuMainTemplate: MenuItemConstructorOptions[] = [
-        {
-            label: "File",
-            submenu: [
-                {
-                    label: "New File",
-                    accelerator: "CmdOrCtrl+N",
-                },
-                {type:"separator"},
-                {role:"quit"}
-            ],
-        },
-        {
-            label: "Tools",
-            submenu: [
-                {role:"toggleDevTools"},
-            ]
-        },
-    ];
-    win.menuBarVisible = true;
-    const menu = Menu.buildFromTemplate(menuMainTemplate);
-    Menu.setApplicationMenu(menu);
-    win.loadFile(path.join(__dirname, "renderer", "main.html"));
-    win.once("ready-to-show", () => win.show());
-    return win;
-}
+import { winName } from "./common";
+import { Worker } from "worker_threads";
+import { createMainWindow } from "./windows/mainWindow";
+import { createConfigWindow } from "./windows/configWindow";
 
 app.whenReady().then(() => {
-    createWindow();
+    const mainWin = createMainWindow();
+    mainWin.webContents.once("did-finish-load", () => {
+        const thread = new Worker(path.join(__dirname, "worker/configWorker.js"))
+
+        thread.on("message", (msg) => {
+            mainWin.webContents.send("worker-response", msg);
+        });
+    });
 });
 
-ipcMain.handle("ping", () => "pong");
+
+ipcMain.on("create-child", (_event, name: winName) => {
+    switch (name) {
+        case winName.config:
+            createConfigWindow();
+            break;
+    }
+});
 
 ipcMain.handle("load-schema", async (_event, name: string) => {
     const path = join(__dirname, "configs", name); // assumes dist/configs

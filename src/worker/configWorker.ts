@@ -9,13 +9,17 @@ interface Message {
 }
 
 interface Response {
-  type: 'value' | 'error';
+  type: 'value' | 'error' | "info";
   key: string;
   value?: any;
 }
 
 const CONFIG_PATH = path.join(__dirname, '..', 'cf7.json');
 let config: Record<string, any> = {};
+
+console.log("worker started");
+
+parentPort?.postMessage({type: "info", key: "start",})
 
 try {
   if (fs.existsSync(CONFIG_PATH)) {

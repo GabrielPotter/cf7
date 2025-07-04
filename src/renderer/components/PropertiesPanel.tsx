@@ -10,7 +10,7 @@ export const PropertiesPanel: React.FC = () => {
 
     useEffect(() => {
         const load = async () => {
-            const result = await (window as any).jsonAPI.loadJsonAndSchema("configs","config");
+            const result = await (window as any).jsonAPI.loadJsonAndSchema("configs", "config");
             if (result) {
                 setSchema(result.schema);
                 setFormData(result.data);
@@ -21,7 +21,7 @@ export const PropertiesPanel: React.FC = () => {
     }, []);
 
     const handleSave = async () => {
-        const success = await (window as any).jsonAPI.saveJson("configs","config", formData);
+        const success = await (window as any).jsonAPI.saveJson("configs", "config", formData);
         if (success) alert("Saved.");
         else alert("Failed to save.");
     };
@@ -30,9 +30,8 @@ export const PropertiesPanel: React.FC = () => {
 
     return (
         <>
-       
             <PropertyGrid schema={schema} data={formData} onChange={setFormData} />
             <button onClick={handleSave}>💾 Save</button>
-      </>
+        </>
     );
 };
