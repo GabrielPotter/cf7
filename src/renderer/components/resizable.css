@@ -1,31 +1,10 @@
-/* Ensure container fills the viewport */
-#root, #huhu {
-  height: 100vh;
-  margin: 0;
-}
-
-/* PanelGroup—the container of panels */
-.react-resizable-panels {
-  display: flex;
-  height: 100vh;
-}
-
-/* Style resize handles */
 .handle {
-  background: #aaa;
-  flex: 0 0 4px;
+  background: #1f1e1e;
+  flex: 0 0 5px;
   cursor: col-resize;
 }
-
 
 /* Panel backgrounds for clarity */
 .panel-left { background: #d0eaff; height: 100vh; }
 .panel-mid { background: #142401; height: 100vh;}
 .panel-right { background: #ffd0d0; height: 100vh; }
-
-.parent {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-

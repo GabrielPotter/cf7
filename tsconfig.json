@@ -10,5 +10,5 @@
         "strict": true,
         "skipLibCheck": true
     },
-    "include": ["src/main.ts", "src/preload.ts", "src/worker","src/windows"]
+    "include": ["src/main.ts", "src/preload.ts", "src/vite-env.ts","src/worker","src/windows"]
 }

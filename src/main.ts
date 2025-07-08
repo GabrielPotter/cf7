@@ -6,6 +6,7 @@ import { winName } from "./common";
 import { Worker } from "worker_threads";
 import { createMainWindow } from "./windows/mainWindow";
 import { createConfigWindow } from "./windows/configWindow";
+import "./vite-env"
 
 app.whenReady().then(() => {
     const mainWin = createMainWindow();

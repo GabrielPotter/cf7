@@ -11,14 +11,24 @@
                 height: 100%;
                 width: 100%;
             }
+
+            #root {
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
+            }
+            .cm-scroller {
+                overflow: scroll !important;
+                white-space: pre !important;
+            }
         </style>
     </head>
     <body>
         <div id="root"></div>
         <script>
-            window.ComponentName = "Config";
+            window.ComponentName = "Main";
         </script>
 
-        <script type="module" src="./components/Config.tsx"></script>
+        <script type="module" src="./components/Main.tsx"></script>
     </body>
 </html>

@@ -1,3 +1,4 @@
+import { red } from "@mui/material/colors";
 import { useCallback } from "react";
 import ReactFlow, {
     MiniMap,
@@ -19,7 +20,7 @@ const initialNodes = [
 
 const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
 
-export const Gre: React.FC = () => {
+export const GraphicsEditor: React.FC = () => {
     const [nodes, , onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 

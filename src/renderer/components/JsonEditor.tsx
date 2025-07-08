@@ -5,11 +5,7 @@ import { javascript } from "@codemirror/lang-javascript";
 const JsonEditor: React.FC = () => {
     const [code, setCode] = React.useState<string>("console.log('Hello, MUI + CodeMirror!');");
 
-    return (
-        <div className="parent">
-            <CodeMirror height="95vh" value={code} extensions={[javascript()]} onChange={(val) => setCode(val)} />
-        </div>
-    );
+    return <CodeMirror height="100vh" value={code} extensions={[javascript()]} onChange={(val) => setCode(val)} />;
 };
 
 export default JsonEditor;

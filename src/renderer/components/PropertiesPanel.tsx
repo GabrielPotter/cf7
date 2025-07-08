@@ -29,9 +29,16 @@ export const PropertiesPanel: React.FC = () => {
     if (!loaded || !schema) return <div>Loading...</div>;
 
     return (
-        <>
+        <Box
+            sx={{
+                height: "100vh",
+                overflow: "auto", // scrollbar only on this
+                p: 2,
+                minHeight: "0",
+            }}
+        >
             <PropertyGrid schema={schema} data={formData} onChange={setFormData} />
             <button onClick={handleSave}>💾 Save</button>
-        </>
+        </Box>
     );
 };

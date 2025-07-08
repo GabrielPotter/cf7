@@ -1,13 +1,14 @@
 import { Box } from "@mui/material";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import JsonEditor from "./JsonEditor";
+import { PropertiesPanel } from "./PropertiesPanel";
 
 const ConfigApp: React.FC = () => {
     return (
         <Box sx={{ display: "flex", height: "100vh" }}>
             <PanelGroup direction="horizontal">
                 <Panel defaultSize={30} minSize={20}>
-                    <div className="panel-left">Left</div>
+                    <div className="panel-left"><PropertiesPanel/></div>
                 </Panel>
                 <PanelResizeHandle className="handle" />
                 <Panel minSize={30}>
