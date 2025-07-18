@@ -20,7 +20,7 @@ export function createConfigWindow() {
             preload: path.join(__dirname, "../preload.js"),
         },
     });
-    win.menuBarVisible = false;
+    //win.menuBarVisible = false;
     win.loadFile(path.join(__dirname, "../renderer", "config.html"));
     win.on("closed", () => {
         winCatalog.delete(cc);

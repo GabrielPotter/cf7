@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import { PropertyGrid, JSONSchemaType } from "./PropertyGrid";
 
 import { Box } from "@mui/material";
+import { on } from "events";
 
-export const PropertiesPanel: React.FC = () => {
+interface PropData{
+    onFormDataChange: (formData: any) => void;
+}
+
+export const PropertiesPanel: React.FC<PropData> = ({onFormDataChange, }) => {
     const [schema, setSchema] = useState<JSONSchemaType | null>(null);
     const [formData, setFormData] = useState<any>({});
     const [loaded, setLoaded] = useState(false);
@@ -15,10 +20,17 @@ export const PropertiesPanel: React.FC = () => {
                 setSchema(result.schema);
                 setFormData(result.data);
                 setLoaded(true);
+                onFormDataChange(result.data);
             }
         };
         load();
     }, []);
+
+    useEffect(() => {
+        if (loaded) {
+            onFormDataChange(formData);
+        }
+    },[formData])
 
     const handleSave = async () => {
         const success = await (window as any).jsonAPI.saveJson("configs", "config", formData);

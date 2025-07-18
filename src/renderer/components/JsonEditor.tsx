@@ -2,10 +2,12 @@ import React from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 
-const JsonEditor: React.FC = () => {
-    const [code, setCode] = React.useState<string>("console.log('Hello, MUI + CodeMirror!');");
+interface JsonEditorProps {data:string}
 
-    return <CodeMirror height="100vh" value={code} extensions={[javascript()]} onChange={(val) => setCode(val)} />;
+const JsonEditor: React.FC<JsonEditorProps> = ({data}) => {
+    //const [code, setCode] = React.useState<string>("console.log('Hello, MUI + CodeMirror!');");
+
+    return <CodeMirror height="100vh" value={data} extensions={[javascript()]} onChange={() => {}} />;
 };
 
 export default JsonEditor;
