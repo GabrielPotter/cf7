@@ -16,7 +16,8 @@
         "copy-configs": "mkdir -p dist/configs && cp -r src/configs/* dist/configs/",
         "build": "npm run build:erlang && npm run build:main && npm run build:renderer && npm run copy-configs",
         "start": "electron --no-sandbox .",
-        "package": "npm run build && electron-builder"
+        "package": "npm run build && electron-builder",
+        "lang-build": "antlr4ts -visitor -no-listener -o src/ep grammar/Erlang.g4"
     },
     "build": {
         "appId": "com.example.cf7",
